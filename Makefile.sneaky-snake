@@ -1,0 +1,1 @@
+$(shell ./snake.sh is sneaky snake 1>&2)

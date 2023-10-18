@@ -1,6 +1,9 @@
 About
 ---------------
-A simple snake game written in Bash.
+A simple demonstration about Makefiles, based on
+a simple snake game written in Bash.
+
+You can [![open it in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/drok/sneaky-snake-Makefiles) right now.
 
 
 How to Play
@@ -9,6 +12,24 @@ Direction control: vim-style keys h, j, k and l;
 Quit: q
 Accept both upper- and lower-case.
 
+About the Makefiles
+-------------------
+This fork of [@pjhade's snake game implementation](https://github.com/pjhades/bash-snake) is intended to demonstrate two not-so-obvious facts about Makefiles:
+1. a makefile is not necessarily used to build software
+2. executing commands in a makefile is unavoidable
+
+The first example (the file `Makefile`) does nothing else than play the snake game. This makefile is just a wrapped script. I created it by indenting the contents of `snake.sh` with a tab, removing all the blank lines and doubling up every dollar ('$') sign.  Run it like this:
+
+```
+make
+```
+You can interrogate it by running `make --dry-run`, which will print out the snake game instead of running it.
+
+The second eample (the file `Makefile.sneaky-snake`) demonstrates that executing the game is unavoidable, no matter what command line arguments you use, and that you cannot even dump the command that is being executed (which is `/bin/sh -c ./snake.sh is sneaky snake 1>&2`). Try it like this:
+```
+make -f Makefile.sneaky-snake
+make --dry-run --print-data-base -f Makefile.sneaky-snake
+```
 
 Some Implementation Details
 ---------------
